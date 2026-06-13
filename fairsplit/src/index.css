@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  @apply bg-surface dark:bg-surface-dark text-slate-800 dark:text-slate-200 antialiased transition-colors duration-300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Sora', sans-serif;
+}
+
+/* Receipt signature: zigzag torn-paper edge, used on receipt-style cards */
+.receipt-edge::after {
+  content: '';
+  display: block;
+  height: 14px;
+  width: 100%;
+  background-image: linear-gradient(135deg, transparent 50%, currentColor 50%),
+    linear-gradient(225deg, transparent 50%, currentColor 50%);
+  background-size: 16px 16px;
+  background-position: top left, top left;
+  background-repeat: repeat-x;
+  color: inherit;
+}
+
+.receipt-paper {
+  background-color: #FFFDF7;
+  background-image:
+    repeating-linear-gradient(transparent 0, transparent 27px, rgba(15,23,42,0.035) 28px);
+}
+
+.dark .receipt-paper {
+  background-color: #1B2233;
+  background-image:
+    repeating-linear-gradient(transparent 0, transparent 27px, rgba(255,255,255,0.025) 28px);
+}
+
+.receipt-paper.receipt-edge::after {
+  color: #FFFDF7;
+}
+
+.dark .receipt-paper.receipt-edge::after {
+  color: #1B2233;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(79, 70, 229, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Focus visibility */
+:focus-visible {
+  outline: 2px solid #4F46E5;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Animated gradient text */
+.gradient-text {
+  background: linear-gradient(90deg, #4F46E5, #818cf8, #10B981);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s ease-in-out infinite;
+}
+
+/* Dotted divider for receipt rows */
+.dotted-divider {
+  border-bottom: 1px dashed rgba(100, 116, 139, 0.3);
+}
